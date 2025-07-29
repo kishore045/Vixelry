@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vixelry - Free Design Resources</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            @apply bg-gray-50 text-gray-800; /* Light theme by default */
+        }
+        /* Custom styles for smooth hover effects and shadows */
+        .card-hover-effect {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card-hover-effect:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            @apply bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-300 ease-in-out;
+        }
+        .btn-secondary {
+            @apply bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-300 transition duration-300 ease-in-out;
+        }
+        /* Dark theme styles (optional, can be toggled via JS) */
+        body.dark {
+            @apply bg-gray-900 text-gray-100;
+        }
+        .dark .bg-white {
+            @apply bg-gray-800;
+        }
+        .dark .text-gray-800 {
+            @apply text-gray-100;
+        }
+        .dark .text-gray-700 {
+            @apply text-gray-200;
+        }
+        .dark .btn-secondary {
+            @apply bg-gray-700 text-gray-200 hover:bg-gray-600;
+        }
+        .dark .border-gray-200 {
+            @apply border-gray-700;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <!-- Logo - Updated with Vixelry image logo and adjusted size -->
+            <a href="index.html" class="flex items-center">
+                <img src="http://googleusercontent.com/file_content/1" alt="Vixelry Logo" class="h-10 md:h-12">
+            </a>
+
+            <!-- Navigation (Desktop) -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-blue-600 font-medium transition duration-300">Home</a>
+                <a href="services.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Services</a>
+                <a href="about-us.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">About Us</a>
+                <a href="categories.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Categories</a>
+                <a href="contact.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-blue-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation (Hidden by default) -->
+        <nav id="mobile-menu" class="md:hidden bg-white px-4 pt-2 pb-4 space-y-2 hidden">
+            <a href="index.html" class="block text-blue-600 font-medium py-2 transition duration-300">Home</a>
+            <a href="services.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Services</a>
+            <a href="about-us.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">About Us</a>
+            <a href="categories.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Categories</a>
+            <a href="contact.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content - Featured Resources Grid (This is your "categories" section on the homepage) -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Featured Design Resources</h1>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Resource Card 1 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover-effect border border-gray-200">
+                <img src="https://placehold.co/600x400/E0F2F7/2C3E50?text=UI+Kit+Preview" alt="Modern UI Kit" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold mb-2">Modern UI Kit Essentials</h2>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="btn-secondary">UI Kit</span>
+                        <span class="btn-secondary">Figma</span>
+                        <span class="btn-secondary">Freebie</span>
+                    </div>
+                    <a href="single-item.html?id=modern-ui-kit-1" class="btn-primary w-full text-center block">View Details</a>
+                </div>
+            </div>
+
+            <!-- Resource Card 2 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover-effect border border-gray-200">
+                <img src="https://placehold.co/600x400/F0F9FF/2C3E50?text=Flyer+Template" alt="Event Flyer Template" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold mb-2">Creative Event Flyer PSD</h2>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="btn-secondary">Flyer</span>
+                        <span class="btn-secondary">PSD</span>
+                        <span class="btn-secondary">Print</span>
+                    </div>
+                    <a href="single-item.html?id=creative-event-flyer-2" class="btn-primary w-full text-center block">View Details</a>
+                </div>
+            </div>
+
+            <!-- Resource Card 3 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover-effect border border-gray-200">
+                <img src="https://placehold.co/600x400/FFF7ED/2C3E50?text=Logo+Mockup" alt="Minimalist Logo Mockup" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold mb-2">Minimalist Logo Mockup PSD</h2>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="btn-secondary">Logo</span>
+                        <span class="btn-secondary">Mockup</span>
+                        <span class="btn-secondary">Branding</span>
+                    </div>
+                    <a href="single-item.html?id=minimalist-logo-mockup-3" class="btn-primary w-full text-center block">View Details</a>
+                </div>
+            </div>
+
+            <!-- Resource Card 4 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover-effect border border-gray-200">
+                <img src="https://placehold.co/600x400/F3E8FF/2C3E50?text=Web+Template" alt="Landing Page Template" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold mb-2">Clean Landing Page HTML</h2>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="btn-secondary">Web Template</span>
+                        <span class="btn-secondary">HTML</span>
+                        <span class="btn-secondary">Responsive</span>
+                    </div>
+                    <a href="single-item.html?id=clean-landing-page-4" class="btn-primary w-full text-center block">View Details</a>
+                </div>
+            </div>
+
+            <!-- Resource Card 5 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover-effect border border-gray-200">
+                <img src="https://placehold.co/600x400/E5F7E0/2C3E50?text=Icon+Set" alt="Vector Icon Set" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold mb-2">Vector Icon Set (SVG & PNG)</h2>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="btn-secondary">Icons</span>
+                        <span class="btn-secondary">SVG</span>
+                        <span class="btn-secondary">PNG</span>
+                    </div>
+                    <a href="single-item.html?id=vector-icon-set-7" class="btn-primary w-full text-center block">View Details</a>
+                </div>
+            </div>
+
+            <!-- Resource Card 6 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover-effect border border-gray-200">
+                <img src="https://placehold.co/600x400/D9EDF7/2C3E50?text=Brochure+Design" alt="Company Brochure Template" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold mb-2">Modern Company Brochure PSD</h2>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="btn-secondary">Brochure</span>
+                        <span class="btn-secondary">PSD</span>
+                        <span class="btn-secondary">Print</span>
+                    </div>
+                    <a href="single-item.html?id=modern-company-brochure-6" class="btn-primary w-full text-center block">View Details</a>
+                </div>
+            </div>
+
+            <!-- Resource Card 7 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover-effect border border-gray-200">
+                <img src="https://placehold.co/600x400/FFE0E0/2C3E50?text=Social+Media" alt="Social Media Templates" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold mb-2">Social Media Post Templates</h2>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="btn-secondary">Social Media</span>
+                        <span class="btn-secondary">Templates</span>
+                    </div>
+                    <a href="single-item.html?id=social-media-templates-6" class="btn-primary w-full text-center block">View Details</a>
+                </div>
+            </div>
+
+            <!-- Resource Card 8 -->
+            <div class="bg-white rounded-lg shadow-md overflow-hidden card-hover-effect border border-gray-200">
+                <img src="https://placehold.co/600x400/E0F7FA/2C3E50?text=Presentation" alt="Presentation Template" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold mb-2">Business Presentation Template</h2>
+                    <div class="flex flex-wrap gap-2 mb-3">
+                        <span class="btn-secondary">Presentation</span>
+                        <span class="btn-secondary">Keynote</span>
+                        <span class="btn-secondary">PowerPoint</span>
+                    </div>
+                    <a href="single-item.html?id=business-presentation-8" class="btn-primary w-full text-center block">View Details</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- About Our Company Section - Removed as it's now a separate page -->
+    <!-- <section id="about-us" class="bg-white py-12 mt-8"> ... </section> -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Vixelry. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-2">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Optional: Dark theme toggle (you can add a button for this)
+            // For now, it's commented out, but shows how you could implement it.
+            /*
+            const toggleDarkTheme = () => {
+                document.body.classList.toggle('dark');
+                // You might want to save this preference in localStorage
+                // if (document.body.classList.contains('dark')) {
+                //     localStorage.setItem('theme', 'dark');
+                // } else {
+                //     localStorage.removeItem('theme');
+                // }
+            };
+
+            // Check for saved theme preference on load
+            // if (localStorage.getItem('theme') === 'dark') {
+            //     document.body.classList.add('dark');
+            // }
+            */
+        });
+    </script>
+</body>
+</html>

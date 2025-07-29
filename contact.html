@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Vixelry</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            @apply bg-gray-50 text-gray-800; /* Light theme by default */
+        }
+        .form-input {
+            @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+        }
+        .btn-primary {
+            @apply bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition duration-300 ease-in-out;
+        }
+        /* Dark theme styles */
+        body.dark {
+            @apply bg-gray-900 text-gray-100;
+        }
+        .dark .bg-white {
+            @apply bg-gray-800;
+        }
+        .dark .text-gray-800 {
+            @apply text-gray-100;
+        }
+        .dark .text-gray-700 {
+            @apply text-gray-200;
+        }
+        .dark .border-gray-300 {
+            @apply border-gray-600;
+        }
+        .dark .form-input {
+            @apply bg-gray-700 text-gray-100;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-centers">
+                <img src="http://googleusercontent.com/file_content/1" alt="Vixelry Logo" class="h-10 md:h-12">
+            </a>
+
+            <!-- Navigation (Desktop) -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Home</a>
+                <a href="services.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Services</a>
+                <a href="about-us.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">About Us</a>
+                <a href="categories.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Categories</a>
+                <a href="contact.html" class="text-blue-600 font-medium transition duration-300">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-blue-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation (Hidden by default) -->
+        <nav id="mobile-menu" class="md:hidden bg-white px-4 pt-2 pb-4 space-y-2 hidden">
+            <a href="index.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Home</a>
+            <a href="services.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Services</a>
+            <a href="about-us.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">About Us</a>
+            <a href="categories.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Categories</a>
+            <a href="contact.html" class="block text-blue-600 font-medium py-2 transition duration-300">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content - Contact Form -->
+    <main class="container mx-auto px-4 py-8">
+        <h1 class="text-3xl font-bold text-center mb-8">Contact Us</h1>
+
+        <div class="max-w-md mx-auto bg-white rounded-lg shadow-md p-6 lg:p-8 border border-gray-200">
+            <p class="text-gray-700 mb-6 text-center">
+                Have a question, feedback, or a resource suggestion? Feel free to reach out to us using the form below!
+            </p>
+
+            <!-- Added Contact Details Section -->
+            <div class="mb-6 text-center">
+                <p class="text-gray-800 font-semibold mb-2">Email: <a href="mailto:info@vixelry.com" class="text-blue-600 hover:underline">info@vixelry.com</a></p>
+                <p class="text-gray-800 font-semibold">Phone: +91 98765 43210</p>
+            </div>
+
+            <form action="#" method="POST">
+                <div class="mb-4">
+                    <label for="name" class="block text-gray-700 text-sm font-medium mb-2">Name:</label>
+                    <input type="text" id="name" name="name" class="form-input" placeholder="Your Name" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-700 text-sm font-medium mb-2">Email:</label>
+                    <input type="email" id="email" name="email" class="form-input" placeholder="your.email@example.com" required>
+                </div>
+                <div class="mb-6">
+                    <label for="message" class="block text-gray-700 text-sm font-medium mb-2">Message:</label>
+                    <textarea id="message" name="message" rows="5" class="form-input" placeholder="Your message..." required></textarea>
+                </div>
+                <button type="submit" class="btn-primary w-full">Send Message</button>
+            </form>
+            <!-- Optional: Success/Error Message Display -->
+            <div id="form-message" class="mt-4 text-center text-sm hidden"></div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Vixelry. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-2">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Basic form submission handling (client-side only)
+            const contactForm = document.querySelector('form');
+            const formMessage = document.getElementById('form-message');
+
+            if (contactForm && formMessage) {
+                contactForm.addEventListener('submit', (event) => {
+                    event.preventDefault(); // Prevent default form submission
+
+                    // In a real application, you would send this data to a backend server
+                    // For now, we'll just simulate a success message.
+                    formMessage.classList.remove('hidden');
+                    formMessage.classList.remove('text-red-500');
+                    formMessage.classList.add('text-green-500');
+                    formMessage.textContent = 'Thank you for your message! We will get back to you soon.';
+                    contactForm.reset(); // Clear the form
+
+                    // You could also hide the message after a few seconds
+                    setTimeout(() => {
+                        formMessage.classList.add('hidden');
+                    }, 5000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>

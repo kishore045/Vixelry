@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="item-title-tag">Item Details - Vixelry</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            @apply bg-gray-50 text-gray-800; /* Light theme by default */
+        }
+        .btn-primary {
+            @apply bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition duration-300 ease-in-out;
+        }
+        .btn-secondary {
+            @apply bg-gray-200 text-gray-700 px-3 py-1 rounded-full text-sm hover:bg-gray-300 transition duration-300 ease-in-out;
+        }
+        /* Dark theme styles */
+        body.dark {
+            @apply bg-gray-900 text-gray-100;
+        }
+        .dark .bg-white {
+            @apply bg-gray-800;
+        }
+        .dark .text-gray-800 {
+            @apply text-gray-100;
+        }
+        .dark .text-gray-700 {
+            @apply text-gray-200;
+        }
+        .dark .btn-secondary {
+            @apply bg-gray-700 text-gray-200 hover:bg-gray-600;
+        }
+        .dark .border-gray-200 {
+            @apply border-gray-700;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <!-- Header -->
+    <header class="bg-white shadow-sm py-4">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="flex items-centers">
+                <img src="http://googleusercontent.com/file_content/1" alt="Vixelry Logo" class="h-10 md:h-12">
+            </a>
+
+            <!-- Navigation (Desktop) -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="index.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Home</a>
+                <a href="services.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Services</a>
+                <a href="about-us.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">About Us</a>
+                <a href="categories.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Categories</a>
+                <a href="contact.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-300">Contact</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-blue-600 focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation (Hidden by default) -->
+        <nav id="mobile-menu" class="md:hidden bg-white px-4 pt-2 pb-4 space-y-2 hidden">
+            <a href="index.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Home</a>
+            <a href="services.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Services</a>
+            <a href="about-us.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">About Us</a>
+            <a href="categories.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Categories</a>
+            <a href="contact.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content - Single Item Page -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="bg-white rounded-lg shadow-md p-6 lg:p-8 border border-gray-200">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Full Preview Image -->
+                <div>
+                    <img id="item-preview-image" src="https://placehold.co/800x600/E0F2F7/2C3E50?text=Full+Preview+Image" alt="Design Resource Preview" class="w-full h-auto rounded-lg shadow-sm">
+                </div>
+
+                <!-- Item Details -->
+                <div>
+                    <h1 id="item-title" class="text-3xl font-bold mb-4">Loading...</h1>
+                    <div id="item-tags" class="flex flex-wrap gap-2 mb-4">
+                        <!-- Tags will be loaded here by JavaScript -->
+                    </div>
+                    <p id="item-description" class="text-gray-700 leading-relaxed mb-6">Loading description...</p>
+                    <a id="item-download-button" href="#" target="_blank" class="btn-primary w-full text-center block">Download</a>
+
+                    <!-- Tags for similar items - Now dynamically loaded -->
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <h3 class="text-xl font-semibold mb-3">Similar Items:</h3>
+                        <div id="similar-items-container" class="flex flex-wrap gap-2">
+                            <!-- Similar items will be loaded here by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Vixelry. All rights reserved.</p>
+            <div class="flex justify-center space-x-4 mt-2">
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
+                <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // JavaScript for mobile menu toggle
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', () => {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // JavaScript for dynamic single item loading
+            const itemData = {
+                'modern-ui-kit-1': {
+                    title: 'Modern UI Kit Essentials',
+                    image: 'https://placehold.co/800x600/E0F2F7/2C3E50?text=Modern+UI+Kit',
+                    description: 'This comprehensive UI kit provides a vast collection of modern, customizable components designed for Figma. Perfect for jumpstarting your next web or mobile application project, it includes everything from buttons and forms to complex navigation patterns and data visualization elements. All components are meticulously organized and easy to use, ensuring a smooth design workflow.',
+                    downloadLink: 'https://docs.google.com/uc?export=download&id=YOUR_GOOGLE_DRIVE_FILE_ID_1',
+                    tags: ['UI Kit', 'Figma', 'Freebie', 'Design System']
+                },
+                'creative-event-flyer-2': {
+                    title: 'Creative Event Flyer PSD',
+                    image: 'https://placehold.co/800x600/F0F9FF/2C3E50?text=Event+Flyer',
+                    description: 'A vibrant and customizable PSD flyer template ideal for promoting various events. Easy to edit and print-ready, it includes well-organized layers for quick customization.',
+                    downloadLink: 'https://docs.google.com/uc?export=download&id=YOUR_GOOGLE_DRIVE_FILE_ID_2',
+                    tags: ['Flyer', 'PSD', 'Print', 'Event']
+                },
+                'minimalist-logo-mockup-3': {
+                    title: 'Minimalist Logo Mockup PSD',
+                    image: 'https://placehold.co/800x600/FFF7ED/2C3E50?text=Logo+Mockup',
+                    description: 'Showcase your logo designs with this clean and minimalist mockup. Available in PSD format, it allows for easy smart object replacement and realistic presentation.',
+                    downloadLink: 'https://docs.google.com/uc?export=download&id=YOUR_GOOGLE_DRIVE_FILE_ID_3',
+                    tags: ['Logo', 'Mockup', 'Branding']
+                },
+                'clean-landing-page-4': {
+                    title: 'Clean Landing Page HTML',
+                    image: 'https://placehold.co/800x600/F3E8FF/2C3E50?text=Landing+Page',
+                    description: 'A responsive and clean HTML landing page template, perfect for startups, agencies, or product launches. Built with modern web standards, it\'s easy to customize and deploy.',
+                    downloadLink: 'https://docs.google.com/uc?export=download&id=YOUR_GOOGLE_DRIVE_FILE_ID_4',
+                    tags: ['Web Template', 'HTML', 'Responsive']
+                },
+                'another-ui-kit-5': {
+                    title: 'Another UI Kit Collection',
+                    image: 'https://placehold.co/800x600/D9EDF7/2C3E50?text=Another+UI+Kit',
+                    description: 'An extensive collection of UI components and screens for various design projects. Compatible with Sketch, it offers a wide range of elements to accelerate your design workflow.',
+                    downloadLink: 'https://docs.google.com/uc?export=download&id=YOUR_GOOGLE_DRIVE_FILE_ID_5',
+                    tags: ['UI Kit', 'Sketch', 'Components']
+                },
+                'social-media-templates-6': {
+                    title: 'Social Media Post Templates',
+                    image: 'https://placehold.co/800x600/FFE0E0/2C3E50?text=Social+Media',
+                    description: 'Engage your audience with these modern social media post templates. Fully customizable in PSD, they are perfect for Instagram, Facebook, and other platforms.',
+                    downloadLink: 'https://docs.google.com/uc?export=download&id=YOUR_GOOGLE_DRIVE_FILE_ID_6',
+                    tags: ['Social Media', 'Templates', 'PSD']
+                },
+                'vector-icon-set-7': {
+                    title: 'Vector Icon Set (SVG & PNG)',
+                    image: 'https://placehold.co/800x600/E5F7E0/2C3E50?text=Icon+Set',
+                    description: 'A versatile set of vector icons available in SVG and PNG formats. Ideal for web, mobile, and print projects, offering a wide range of commonly used symbols.',
+                    downloadLink: 'https://docs.google.com/uc?export=download&id=YOUR_GOOGLE_DRIVE_FILE_ID_7',
+                    tags: ['Icons', 'SVG', 'PNG']
+                },
+                'business-presentation-8': {
+                    title: 'Business Presentation Template',
+                    image: 'https://placehold.co/800x600/E0F7FA/2C3E50?text=Presentation',
+                    description: 'A professional and clean presentation template suitable for business meetings, pitches, and reports. Compatible with Keynote and PowerPoint, with easy-to-edit slides.',
+                    downloadLink: 'https://docs.google.com/uc?export=download&id=YOUR_GOOGLE_DRIVE_FILE_ID_8',
+                    tags: ['Presentation', 'Keynote', 'PowerPoint']
+                }
+            };
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const itemId = urlParams.get('id'); // Get the 'id' from the URL
+
+            const item = itemData[itemId]; // Get the item details from our mock database
+
+            if (item) {
+                // Update page title tag
+                document.getElementById('item-title-tag').textContent = item.title + ' - Vixelry';
+
+                // Update content on the page
+                document.getElementById('item-preview-image').src = item.image;
+                document.getElementById('item-preview-image').alt = item.title;
+                document.getElementById('item-title').textContent = item.title;
+                document.getElementById('item-description').textContent = item.description;
+                document.getElementById('item-download-button').href = item.downloadLink;
+
+                // Clear existing tags and add new ones
+                const itemTagsContainer = document.getElementById('item-tags');
+                itemTagsContainer.innerHTML = ''; // Clear existing tags
+                item.tags.forEach(tag => {
+                    const span = document.createElement('span');
+                    span.className = 'btn-secondary'; // Use your existing tag style
+                    span.textContent = tag;
+                    itemTagsContainer.appendChild(span);
+                });
+
+                // Dynamically load similar items based on the current item's tags
+                const similarItemsContainer = document.getElementById('similar-items-container');
+                similarItemsContainer.innerHTML = ''; // Clear existing similar items
+
+                // Filter for items that share at least one tag with the current item, excluding itself
+                const currentItemTags = new Set(item.tags);
+                const similarItems = Object.keys(itemData).filter(key => {
+                    if (key === itemId) return false; // Exclude the current item itself
+                    const otherItem = itemData[key];
+                    return otherItem.tags.some(tag => currentItemTags.has(tag));
+                });
+
+                // Limit to a few similar items for display
+                const displayCount = 4;
+                similarItems.slice(0, displayCount).forEach(similarItemId => {
+                    const similarItem = itemData[similarItemId];
+                    const anchor = document.createElement('a');
+                    anchor.href = `single-item.html?id=${similarItemId}`; // Link to its own single item page
+                    anchor.className = 'btn-secondary'; // Apply button style
+                    anchor.textContent = similarItem.title;
+                    similarItemsContainer.appendChild(anchor);
+                });
+
+                if (similarItems.length === 0) {
+                    similarItemsContainer.textContent = 'No similar items found.';
+                    similarItemsContainer.classList.add('text-gray-500');
+                }
+
+            } else {
+                // Handle case where item is not found (e.g., display an error message)
+                document.getElementById('item-title').textContent = 'Resource Not Found';
+                document.getElementById('item-description').textContent = 'The requested design resource could not be found.';
+                document.getElementById('item-download-button').style.display = 'none'; // Hide download button
+                document.getElementById('item-tags').style.display = 'none'; // Hide tags
+                document.getElementById('item-preview-image').src = 'https://placehold.co/800x600/FF0000/FFFFFF?text=Not+Found'; // Error placeholder
+                document.getElementById('similar-items-container').innerHTML = '<p class="text-gray-500">No similar items to display.</p>';
+            }
+        });
+    </script>
+</body>
+</html>
