@@ -109,7 +109,7 @@
                 </div>
             </div>
         </div>
-        <div id="whatsappButton" class="fixed bottom-10 right-10 bg-white rounded-full animate-bounce transition translate-x-2 "><button
+         <div id="whatsappButton" class="fixed bottom-10 right-10 bg-white rounded-full animate-bounce transition translate-x-2 "><button
             type="button" class="flex justify-center items-center"><svg stroke="currentColor" fill="currentColor"
                 stroke-width="0" viewBox="0 0 24 24" class="text-green-500  text-5xl lg:text-7xl " height="1em"
                 width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -136,24 +136,7 @@
                              7.29748 8.5262 7.29892 8.39232 7.30833L8.59339 7.30019Z">
                 </path>
             </svg></button></div>
-            <div id="emailButton" class="fixed bottom-28 right-10 bg-white rounded-full animate-bounce transition translate-x-2 cursor-pointer">
-    <button type="button" class="flex justify-center items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="text-red-500 text-5xl lg:text-7xl" viewBox="0 0 24 24" width="1em" height="1em">
-            <path d="M20 4H4C2.89 4 2.01 4.9 2.01 6L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-    </button>
-</div>
-
-<script>
-document.getElementById('emailButton').addEventListener('click', function() {
-    const email = 'vixlery@gmail.com';
-    const subject = 'Inquiry from Website';
-    const body = 'Hello, I would like to know more about your services.';
-
-    const gmailLink = `https://mail.google.com/mail/?view=cm&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    window.open(gmailLink, '_blank');
-});
+            <script>
 document.addEventListener('DOMContentLoaded', function() {
     const whatsappButton = document.getElementById('whatsappButton');
 
@@ -168,6 +151,27 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 </script>
+<div id="emailButton" class="fixed bottom-28 right-10 bg-white rounded-full animate-bounce transition translate-x-2 cursor-pointer">
+    <button type="button" class="flex justify-center items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="text-red-500 text-5xl lg:text-7xl" viewBox="0 0 24 24" width="1em" height="1em">
+            <path d="M20 4H4C2.89 4 2.01 4.9 2.01 6L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+    </button>
+    <script>
+        document.getElementById('emailButton').addEventListener('click', function() {
+    const email = 'vixlery@gmail.com';
+    const subject = 'Inquiry from Website';
+    const body = 'Hello, I would like to know more about your services.';
+
+    const gmailLink = `https://mail.google.com/mail/?view=cm&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.open(gmailLink, '_blank');
+});
+
+    </script>
+</div>
+
+            
     </main>
 
     <!-- Footer -->

@@ -38,6 +38,47 @@
             40% { transform: translateY(-10px); }
             60% { transform: translateY(-5px); }
         }
+       /* Marquee Animation */
+        @keyframes marquee-rtl {
+            /* Start with the content's right edge aligned with the container's right edge */
+            0% { transform: translateX(0); }
+            /* Move left by the full width of one set of content */
+            100% { transform: translateX(-50%); } /* This moves it by half the total track width (one content copy) */
+        }
+
+        .marquee-track {
+            animation: marquee-rtl 30s linear infinite; /* Adjust duration for speed */
+            white-space: nowrap; /* Ensure content stays on one line */
+            display: flex; /* Use flexbox to keep items inline */
+            position: absolute; /* Position relative to the container */
+            top: 0;
+            height: 100%;
+            align-items: center;
+            /* Position the track to the right, so its content starts visible */
+            right: 0; /* Align the right edge of the track with the container's right edge */
+            width: fit-content; /* Allow track to fit content, then animate it */
+        }
+        .marquee-content {
+            flex-shrink: 0; /* Prevent content from shrinking */
+            /* Each .marquee-content will be one copy of the news. */
+            /* Its width will be defined by its content */
+        }
+        /* Fixed position for the news ticker at the bottom */
+        .news-ticker-fixed {
+            position: fixed; /* நிலைத்த நிலை */
+            bottom: 0; /* திரையின் அடிப்பகுதியில் */
+            left: 0; /* இடது விளிம்பில் */
+            right: 0; /* வலது விளிம்பில் */
+            z-index: 999; /* மற்ற உள்ளடக்கங்களுக்கு மேலே இருக்க */
+            margin: 0; /* தேவையற்ற மார்ஜினை நீக்குகிறது */
+            border-radius: 0; /* முழு அகலத்திற்கு வட்டமான மூலைகளை நீக்குகிறது */
+            overflow: hidden; /* Hide content that is outside the visible area */
+        }
+        /* Ensure the inner container of the news ticker also hides overflow */
+        #news-ticker .container {
+            overflow: hidden;
+            position: relative; /* For absolute positioning of marquee-track */
+        }
 
         .animate-fade-in-down { animation: fadeInDown 1s ease-out forwards; }
         .animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; }
@@ -65,14 +106,14 @@
 <body class="scroll-snap-y">
 
     <!-- Header Section (Dark Theme) -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-white shadow-sm py-4">
-        <div class="container mx-auto px-4 flex justify-between items-center">
-            <!-- Logo -->
+    <header class=" fixed top-0 left-0 right-0 z-50 bg-white shadow-sm py-4 ">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <!-- Logo/Site Title -->
             <a href="index.html" class="flex items-centers">
                                 <img src="vixelry.png" alt="Vixelry Logo" class="h-30 md:h-32 md:h-20 max-w-[120px] md:max-w-[160px] lg:max-w-[200px] w-full h-auto">
             </a>
             <nav class="hidden md:flex space-x-6">
-               <a href="index.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Home</a>
+                <a href="index.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Home</a>
             <a href="services.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Services</a>
             <a href="about-us.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">About Us</a>
             <a href="categories.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Categories</a>
@@ -92,17 +133,16 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                 </svg>
             </button>
-            <a href="#home" class="text-white text-2xl font-medium hover:text-green-400 transition">Home</a>
-            <a href="#services" class="text-white text-2xl font-medium hover:text-green-400 transition">Services</a>
-            <a href="#portfolio" class="text-white text-2xl font-medium hover:text-green-400 transition">Portfolio</a>
-            <a href="#videos" class="text-white text-2xl font-medium hover:text-green-400 transition">Videos</a>
-            <a href="#about" class="text-white text-2xl font-medium hover:text-green-400 transition">About Us</a>
-            <a href="#contact" class="text-white text-2xl font-medium hover:text-green-400 transition">Contact</a>
+            <a href="index.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Home</a>
+            <a href="services.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Services</a>
+            <a href="about-us.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">About Us</a>
+            <a href="categories.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Categories</a>
+            <a href="contact.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Contact</a>
         </div>
     </header>
 
     <!-- Hero Section (Light Theme - Solid Background) -->
-    <section id="home" class="scroll-snap-item relative h-screen bg-white flex items-center justify-center text-gray-800 p-8 rounded-lg shadow-lg m-4">
+    <section id="home" class="scroll-snap-item relative h-screen bg-white flex items-center justify-center text-gray-800 p-8 rounded-lg shadow-lg ">
         <div class="text-center max-w-4xl">
             <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 animate-fade-in-down">
                 Crafting <span class="text-blue-600">Digital Experiences</span> That Resonate.
@@ -110,7 +150,7 @@
             <p class="text-lg md:text-xl mb-8 opacity-90 animate-fade-in-up">
                 We bring your vision to life with exceptional UI/UX, impactful digital marketing, and captivating video content.
             </p>
-            <a href="services.html" class="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 rounded-full text-lg font-semibold shadow-xl transition transform hover:scale-105">
+            <a href="#services" class="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 rounded-full text-lg font-semibold shadow-xl transition transform hover:scale-105">
                 Explore Our Services
             </a>
         </div>
@@ -328,7 +368,7 @@
                 </button>
             </form>
         </div>
-        <div id="whatsappButton" class="fixed bottom-10 right-10 bg-white rounded-full animate-bounce transition translate-x-2 "><button
+        <div id="whatsappButton" class="fixed bottom-20 right-10 bg-white rounded-full animate-bounce transition translate-x-2 "><button
             type="button" class="flex justify-center items-center"><svg stroke="currentColor" fill="currentColor"
                 stroke-width="0" viewBox="0 0 24 24" class="text-green-500  text-5xl lg:text-7xl " height="1em"
                 width="1em" xmlns="http://www.w3.org/2000/svg">
@@ -355,24 +395,7 @@
                              7.29748 8.5262 7.29892 8.39232 7.30833L8.59339 7.30019Z">
                 </path>
             </svg></button></div>
-            <div id="emailButton" class="fixed bottom-28 right-10 bg-white rounded-full animate-bounce transition translate-x-2 cursor-pointer">
-    <button type="button" class="flex justify-center items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="text-red-500 text-5xl lg:text-7xl" viewBox="0 0 24 24" width="1em" height="1em">
-            <path d="M20 4H4C2.89 4 2.01 4.9 2.01 6L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-    </button>
-</div>
-
-<script>
-document.getElementById('emailButton').addEventListener('click', function() {
-    const email = 'vixlery@gmail.com';
-    const subject = 'Inquiry from Website';
-    const body = 'Hello, I would like to know more about your services.';
-
-    const gmailLink = `https://mail.google.com/mail/?view=cm&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    window.open(gmailLink, '_blank');
-});
+            <script>
 document.addEventListener('DOMContentLoaded', function() {
     const whatsappButton = document.getElementById('whatsappButton');
 
@@ -386,7 +409,48 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
+
 </script>
+<div id="emailButton" class="fixed bottom-32 right-10 bg-white rounded-full animate-bounce transition translate-x-2 cursor-pointer">
+    <button type="button" class="flex justify-center items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="text-red-500 text-5xl lg:text-7xl" viewBox="0 0 24 24" width="1em" height="1em">
+            <path d="M20 4H4C2.89 4 2.01 4.9 2.01 6L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+    </button>
+    <script>
+        document.getElementById('emailButton').addEventListener('click', function() {
+    const email = 'vixlery@gmail.com';
+    const subject = 'Inquiry from Website';
+    const body = 'Hello, I would like to know more about your services.';
+
+    const gmailLink = `https://mail.google.com/mail/?view=cm&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+    window.open(gmailLink, '_blank');
+});
+    </script>
+</div>
+
+    </section>
+
+    <section id="news-ticker" class="py-4 py-4 bg-gradient-to-r from-gray-900 to-gray-700 text-white shadow-lg news-ticker-fixed">
+        <div class="container mx-auto px-4 relative h-8 flex items-center">
+            <span class="font-bold mr-4 flex-shrink-0"></span>
+            <div class="marquee-track absolute left-0 top-0 h-full flex items-center">
+                <div class="marquee-content flex-shrink-0">
+                    <span class="mx-8">✨ New UI/UX Case Study Released! Check out our latest design project.</span>
+                    <span class="mx-8">📈 Digital Marketing Workshop on SEO Trends - Register Now!</span>
+                    <span class="mx-8">🎬 Exciting New Video Production Service Launched! Contact us for details.</span>
+                    <span class="mx-8">🚀 Expanding Our Team! We're hiring talented designers and marketers.</span>
+                </div>
+                <div class="marquee-content flex-shrink-0">
+                    <!-- Duplicate content for seamless loop -->
+                    <span class="mx-8">✨ New UI/UX Case Study Released! Check out our latest design project.</span>
+                    <span class="mx-8">📈 Digital Marketing Workshop on SEO Trends - Register Now!</span>
+                    <span class="mx-8">🎬 Exciting New Video Production Service Launched! Contact us for details.</span>
+                    <span class="mx-8">🚀 Expanding Our Team! We're hiring talented designers and marketers.</span>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Footer Section (Dark Theme) -->
@@ -410,7 +474,12 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileMenu.classList.remove('hidden');
         });
 
-        closeMobileMenuButton.addEventListener('click', () => {
+        closeMobileMenuButton.addEventListener('click', (event) => {
+            // Prevent the click event from propagating to elements underneath
+            // இந்த வரி, மொபைல் மெனுவில் உள்ள 'X' பட்டனைக் கிளிக் செய்யும்போது,
+            // கிளிக் நிகழ்வு அதன் கீழ் உள்ள மற்ற உறுப்புகளுக்குப் பரவாமல் தடுக்கிறது.
+            // இதனால் மெனு சரியாக மூடும், வேறு பக்கத்திற்குச் செல்லாது.
+            event.stopPropagation(); 
             mobileMenu.classList.add('hidden');
         });
 
