@@ -289,6 +289,18 @@ document.getElementById('emailButton').addEventListener('click', function() {
 
     window.open(gmailLink, '_blank');
 });
+document.addEventListener('DOMContentLoaded', function() {
+    const whatsappButton = document.getElementById('whatsappButton');
+
+    if (whatsappButton) {
+        whatsappButton.addEventListener('click', function() {
+            const phoneNumber = '8667089505'; // <-- Update your number here
+            const whatsappLink = `https://wa.me/${phoneNumber}`;
+
+            window.open(whatsappLink, '_blank');
+        });
+    }
+});
 
 </script>
 
@@ -341,18 +353,7 @@ document.getElementById('emailButton').addEventListener('click', function() {
             // }
             */
         });
-        document.addEventListener('DOMContentLoaded', function() {
-    const whatsappButton = document.getElementById('whatsappButton');
-
-    if (whatsappButton) {
-        whatsappButton.addEventListener('click', function() {
-            const phoneNumber = '8667089505'; // <-- Update your number here
-            const whatsappLink = `https://wa.me/${phoneNumber}`;
-
-            window.open(whatsappLink, '_blank');
-        });
-    }
-});
+        
     </script>
 </body>
 
