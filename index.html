@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,91 +9,166 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
         /* Light Theme Base Styles */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8fafc; /* Light gray background */
-            color: #1a202c; /* Dark text color for contrast */
+            background-color: #f8fafc;
+            /* Light gray background */
+            color: #1a202c;
+            /* Dark text color for contrast */
         }
+
         /* Custom scroll-snap for smooth section transitions (optional) */
         .scroll-snap-y {
             scroll-snap-type: y mandatory;
             overflow-y: scroll;
             height: 100vh;
         }
+
         .scroll-snap-item {
             scroll-snap-align: start;
         }
+
         /* Keyframe animations for subtle effects */
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         @keyframes bounceIn {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
+
+            0%,
+            20%,
+            50%,
+            80%,
+            100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-10px);
+            }
+
+            60% {
+                transform: translateY(-5px);
+            }
         }
-       /* Marquee Animation */
+
+        /* Marquee Animation */
         @keyframes marquee-rtl {
+
             /* Start with the content's right edge aligned with the container's right edge */
-            0% { transform: translateX(0); }
+            0% {
+                transform: translateX(0);
+            }
+
             /* Move left by the full width of one set of content */
-            100% { transform: translateX(-50%); } /* This moves it by half the total track width (one content copy) */
+            100% {
+                transform: translateX(-50%);
+            }
+
+            /* This moves it by half the total track width (one content copy) */
         }
 
         .marquee-track {
-            animation: marquee-rtl 30s linear infinite; /* Adjust duration for speed */
-            white-space: nowrap; /* Ensure content stays on one line */
-            display: flex; /* Use flexbox to keep items inline */
-            position: absolute; /* Position relative to the container */
+            animation: marquee-rtl 30s linear infinite;
+            /* Adjust duration for speed */
+            white-space: nowrap;
+            /* Ensure content stays on one line */
+            display: flex;
+            /* Use flexbox to keep items inline */
+            position: absolute;
+            /* Position relative to the container */
             top: 0;
             height: 100%;
             align-items: center;
             /* Position the track to the right, so its content starts visible */
-            right: 0; /* Align the right edge of the track with the container's right edge */
-            width: fit-content; /* Allow track to fit content, then animate it */
+            right: 0;
+            /* Align the right edge of the track with the container's right edge */
+            width: fit-content;
+            /* Allow track to fit content, then animate it */
         }
+
         .marquee-content {
-            flex-shrink: 0; /* Prevent content from shrinking */
+            flex-shrink: 0;
+            /* Prevent content from shrinking */
             /* Each .marquee-content will be one copy of the news. */
             /* Its width will be defined by its content */
         }
+
         /* Fixed position for the news ticker at the bottom */
         .news-ticker-fixed {
-            position: fixed; /* நிலைத்த நிலை */
-            bottom: 0; /* திரையின் அடிப்பகுதியில் */
-            left: 0; /* இடது விளிம்பில் */
-            right: 0; /* வலது விளிம்பில் */
-            z-index: 999; /* மற்ற உள்ளடக்கங்களுக்கு மேலே இருக்க */
-            margin: 0; /* தேவையற்ற மார்ஜினை நீக்குகிறது */
-            border-radius: 0; /* முழு அகலத்திற்கு வட்டமான மூலைகளை நீக்குகிறது */
-            overflow: hidden; /* Hide content that is outside the visible area */
+            position: fixed;
+            /* நிலைத்த நிலை */
+            bottom: 0;
+            /* திரையின் அடிப்பகுதியில் */
+            left: 0;
+            /* இடது விளிம்பில் */
+            right: 0;
+            /* வலது விளிம்பில் */
+            z-index: 999;
+            /* மற்ற உள்ளடக்கங்களுக்கு மேலே இருக்க */
+            margin: 0;
+            /* தேவையற்ற மார்ஜினை நீக்குகிறது */
+            border-radius: 0;
+            /* முழு அகலத்திற்கு வட்டமான மூலைகளை நீக்குகிறது */
+            overflow: hidden;
+            /* Hide content that is outside the visible area */
         }
+
         /* Ensure the inner container of the news ticker also hides overflow */
         #news-ticker .container {
             overflow: hidden;
-            position: relative; /* For absolute positioning of marquee-track */
+            position: relative;
+            /* For absolute positioning of marquee-track */
         }
 
-        .animate-fade-in-down { animation: fadeInDown 1s ease-out forwards; }
-        .animate-fade-in-up { animation: fadeInUp 1s ease-out forwards; }
-        .animate-bounce-in { animation: bounceIn 1s infinite; } /* Changed to infinite for continuous subtle bounce */
+        .animate-fade-in-down {
+            animation: fadeInDown 1s ease-out forwards;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out forwards;
+        }
+
+        .animate-bounce-in {
+            animation: bounceIn 1s infinite;
+        }
+
+        /* Changed to infinite for continuous subtle bounce */
 
         /* Responsive video container for 16:9 aspect ratio */
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
+            /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
-            border-radius: 0.75rem; /* rounded-xl */
+            border-radius: 0.75rem;
+            /* rounded-xl */
         }
 
         .video-container iframe {
@@ -102,63 +178,87 @@
             width: 100%;
             height: 100%;
         }
-          .course-nav-item {
+
+        .course-nav-item {
             cursor: pointer;
             transition: all 0.2s ease-in-out;
             border-left: 3px solid transparent;
         }
+
         .course-nav-item.active {
             background-color: #e5f1ff;
             border-left: 3px solid #3b82f6;
             color: #1a202c;
             font-weight: 600;
         }
+
         .course-nav-item:hover {
             background-color: #f1f5f9;
         }
+
         .course-section {
             display: none;
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
         }
+
         .course-section.active {
             display: block;
             animation: fadeIn 0.5s forwards;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
 
         /* Styles for expandable modules and lessons */
-        .module-content, .lesson-content {
+        .module-content,
+        .lesson-content {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease-in-out;
         }
-        .module-content.expanded, .lesson-content.expanded {
-            max-height: 1000px; /* Increased to accommodate content */
+
+        .module-content.expanded,
+        .lesson-content.expanded {
+            max-height: 1000px;
+            /* Increased to accommodate content */
         }
-        .module-header, .lesson-header {
+
+        .module-header,
+        .lesson-header {
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .module-arrow, .lesson-arrow {
+
+        .module-arrow,
+        .lesson-arrow {
             transition: transform 0.3s ease-in-out;
         }
-        .module-arrow.rotate, .lesson-arrow.rotate {
+
+        .module-arrow.rotate,
+        .lesson-arrow.rotate {
             transform: rotate(90deg);
         }
+
         .video-container {
             position: relative;
             width: 100%;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            padding-bottom: 56.25%;
+            /* 16:9 Aspect Ratio */
             height: 0;
             overflow: hidden;
             border-radius: 0.75rem;
         }
+
         .video-container iframe {
             position: absolute;
             top: 0;
@@ -168,6 +268,7 @@
         }
     </style>
 </head>
+
 <body class="scroll-snap-y">
 
     <!-- Header Section (Dark Theme) -->
@@ -175,47 +276,66 @@
         <div class="container mx-auto flex justify-between items-center px-4">
             <!-- Logo/Site Title -->
             <a href="index.html" class="flex items-centers">
-                                <img src="vixelry.png" alt="Vixelry Logo" class="h-30 md:h-32 md:h-20 max-w-[120px] md:max-w-[160px] lg:max-w-[200px] w-full h-auto">
+                <img src="vixelry.png" alt="Vixelry Logo"
+                    class="h-30 md:h-32 md:h-20 max-w-[120px] md:max-w-[160px] lg:max-w-[200px] w-full h-auto">
             </a>
             <nav class="hidden md:flex space-x-6">
-                <a href="index.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Home</a>
-            <a href="services.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Services</a>
-            <a href="about-us.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">About Us</a>
-            <a href="categories.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Categories</a>
-            <a href="contact.html"  class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Contact</a>
+                <a href="index.html"
+                    class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Home</a>
+                <a href="services.html"
+                    class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Services</a>
+                <a href="about-us.html"
+                    class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">About
+                    Us</a>
+                <a href="categories.html"
+                    class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Categories</a>
+                <a href="contact.html"
+                    class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Contact</a>
             </nav>
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-button" class="md:hidden p-2 rounded-md hover:bg-gray-700 transition">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7"></path>
                 </svg>
             </button>
         </div>
         <!-- Mobile Navigation Overlay -->
-        <div id="mobile-menu" class="hidden md:hidden fixed inset-0 bg-gray-900 bg-opacity-95 z-40 flex flex-col items-center justify-center space-y-6">
+        <div id="mobile-menu"
+            class="hidden md:hidden fixed inset-0 bg-gray-900 bg-opacity-95 z-40 flex flex-col items-center justify-center space-y-6">
             <button id="close-mobile-menu" class="absolute top-4 right-4 p-2 rounded-md hover:bg-gray-700 transition">
-                <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
                 </svg>
             </button>
-            <a href="index.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Home</a>
-            <a href="services.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Services</a>
-            <a href="about-us.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">About Us</a>
-            <a href="categories.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Categories</a>
-            <a href="contact.html" class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Contact</a>
+            <a href="index.html"
+                class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Home</a>
+            <a href="services.html"
+                class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Services</a>
+            <a href="about-us.html"
+                class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">About Us</a>
+            <a href="categories.html"
+                class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Categories</a>
+            <a href="contact.html"
+                class="block text-gray-600 hover:text-blue-600 font-medium py-2 transition duration-300">Contact</a>
         </div>
     </header>
 
     <!-- Hero Section (Light Theme - Solid Background) -->
-    <section id="home" class="scroll-snap-item relative h-screen bg-white flex items-center justify-center text-gray-800 p-8 rounded-lg shadow-lg ">
+    <section id="home"
+        class="scroll-snap-item relative h-screen bg-white flex items-center justify-center text-gray-800 p-8 rounded-lg shadow-lg ">
         <div class="text-center max-w-4xl">
             <h1 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 animate-fade-in-down">
                 Creative <span class="text-blue-600">Digital Experiences</span> That Resonate.
             </h1>
             <p class="text-lg md:text-xl mb-8 opacity-90 animate-fade-in-up">
-                We bring your vision to life with exceptional UI/UX, impactful digital marketing, and captivating video content.
+                We bring your vision to life with exceptional UI/UX, impactful digital marketing, and captivating video
+                content.
             </p>
-            <a href="#services" class="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 rounded-full text-lg font-semibold shadow-xl transition transform hover:scale-105">
+            <a href="#services"
+                class="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 rounded-full text-lg font-semibold shadow-xl transition transform hover:scale-105">
                 Explore Our Services
             </a>
         </div>
@@ -227,41 +347,57 @@
             <h2 class="text-4xl font-bold text-gray-800 mb-12">Our Core Services</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
                 <!-- UI/UX Design Card -->
-                <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition transform hover:-translate-y-2">
+                <div
+                    class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition transform hover:-translate-y-2">
                     <div class="text-green-500 mb-4">
                         <!-- UI/UX Design Icon (Pen Tool / Design) -->
-                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.232z"></path>
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.232z">
+                            </path>
                         </svg>
                     </div>
                     <h3 class="text-2xl font-semibold text-gray-700 mb-4">UI/UX Design</h3>
-                    <p class="text-gray-600">Creating intuitive and engaging user interfaces and experiences that delight your audience and drive conversions.</p>
+                    <p class="text-gray-600">Creating intuitive and engaging user interfaces and experiences that
+                        delight your audience and drive conversions.</p>
                 </div>
 
                 <!-- Digital Marketing Card -->
-                <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition transform hover:-translate-y-2">
+                <div
+                    class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition transform hover:-translate-y-2">
                     <div class="text-blue-500 mb-4">
                         <!-- Digital Marketing Icon (Bar Chart / Analytics) -->
-                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path>
                         </svg>
                     </div>
                     <h3 class="text-2xl font-semibold text-gray-700 mb-4">Digital Marketing</h3>
-                    <p class="text-gray-600">Strategizing and executing data-driven campaigns to boost your online presence, leads, and sales.</p>
+                    <p class="text-gray-600">Strategizing and executing data-driven campaigns to boost your online
+                        presence, leads, and sales.</p>
                 </div>
 
                 <!-- Video Editing Card -->
-                <div class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition transform hover:-translate-y-2">
+                <div
+                    class="bg-gray-50 p-8 rounded-xl shadow-md hover:shadow-lg transition transform hover:-translate-y-2">
                     <div class="text-red-500 mb-4">
                         <!-- Video Editing Icon (Play Button / Film Reel) -->
-                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.82V10.18a1 1 0 011.555-.832l3.197 2.132a1 1 0 010 1.664z"></path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        <svg class="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M14.752 11.168l-3.197 2.132A1 1 0 0110 13.82V10.18a1 1 0 011.555-.832l3.197 2.132a1 1 0 010 1.664z">
+                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
                     </div>
                     <h3 class="text-2xl font-semibold text-gray-700 mb-4">Video Editing</h3>
-                    <p class="text-gray-600">Producing compelling video content, from concept to final cut, that tells your story effectively.</p>
+                    <p class="text-gray-600">Producing compelling video content, from concept to final cut, that tells
+                        your story effectively.</p>
                 </div>
             </div>
         </div>
@@ -271,63 +407,79 @@
     <section id="portfolio" class="scroll-snap-item py-20 bg-gray-100 rounded-lg shadow-lg m-4">
         <div class="container mx-auto px-8 text-center">
             <h2 class="text-4xl font-bold text-gray-800 mb-12">Our Recent Work</h2>
-            <p class="text-lg text-gray-600 mb-8">Showcasing our diverse projects in UI/UX, Digital Marketing, and Video Production.</p>
+            <p class="text-lg text-gray-600 mb-8">Showcasing our diverse projects in UI/UX, Digital Marketing, and Video
+                Production.</p>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"> <!-- Reduced gap to gap-6 -->
                 <!-- Initially visible Portfolio Items -->
                 <div class="bg-white rounded-xl shadow-md overflow-hidden w-full">
-                    <img src="https://placehold.co/600x400/E0F2F7/0288D1?text=UI/UX+Project+Alpha" alt="UI/UX Project Alpha" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/E0F2F7/0288D1?text=UI/UX+Project+Alpha"
+                        alt="UI/UX Project Alpha" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-800 mb-2">Mobile App Redesign (Alpha)</h3>
-                        <p class="text-gray-600">A complete overhaul of an e-commerce mobile application for enhanced user experience.</p>
+                        <p class="text-gray-600">A complete overhaul of an e-commerce mobile application for enhanced
+                            user experience.</p>
                         <a href="#" class="text-blue-600 hover:underline mt-4 inline-block">View Case Study</a>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow-md overflow-hidden w-full">
-                    <img src="https://placehold.co/600x400/F0F4C3/FBC02D?text=Digital+Campaign+Beta" alt="Digital Marketing Campaign Beta" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/F0F4C3/FBC02D?text=Digital+Campaign+Beta"
+                        alt="Digital Marketing Campaign Beta" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-800 mb-2">Lead Generation Campaign (Beta)</h3>
-                        <p class="text-gray-600">Successful digital marketing strategy resulting in a 30% increase in qualified leads.</p>
+                        <p class="text-gray-600">Successful digital marketing strategy resulting in a 30% increase in
+                            qualified leads.</p>
                         <a href="#" class="text-blue-600 hover:underline mt-4 inline-block">View Details</a>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl shadow-md overflow-hidden w-full">
-                    <img src="https://placehold.co/600x400/FFEBEE/D32F2F?text=Video+Production+Gamma" alt="Video Production Gamma" class="w-full h-48 object-cover">
+                    <img src="https://placehold.co/600x400/FFEBEE/D32F2F?text=Video+Production+Gamma"
+                        alt="Video Production Gamma" class="w-full h-48 object-cover">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-800 mb-2">Brand Story Video (Gamma)</h3>
-                        <p class="text-gray-600">A compelling brand narrative video that significantly boosted audience engagement.</p>
+                        <p class="text-gray-600">A compelling brand narrative video that significantly boosted audience
+                            engagement.</p>
                         <a href="#" class="text-blue-600 hover:underline mt-4 inline-block">Watch Video</a>
                     </div>
                 </div>
 
                 <!-- Hidden Portfolio Items -->
-                <div id="more-portfolio-items" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden col-span-full"> <!-- Reduced gap to gap-6 -->
+                <div id="more-portfolio-items"
+                    class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden col-span-full">
+                    <!-- Reduced gap to gap-6 -->
                     <div class="bg-white rounded-xl shadow-md overflow-hidden w-full">
-                        <img src="https://placehold.co/600x400/E0F2F7/0288D1?text=UI/UX+Project+Delta" alt="UI/UX Project Delta" class="w-full h-48 object-cover">
+                        <img src="https://placehold.co/600x400/E0F2F7/0288D1?text=UI/UX+Project+Delta"
+                            alt="UI/UX Project Delta" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-2">Website Redesign (Delta)</h3>
-                            <p class="text-gray-600">Modernizing a corporate website for improved aesthetics and functionality.</p>
+                            <p class="text-gray-600">Modernizing a corporate website for improved aesthetics and
+                                functionality.</p>
                             <a href="#" class="text-blue-600 hover:underline mt-4 inline-block">View Case Study</a>
                         </div>
                     </div>
                     <div class="bg-white rounded-xl shadow-md overflow-hidden w-full">
-                        <img src="https://placehold.co/600x400/F0F4C3/FBC02D?text=Digital+Campaign+Epsilon" alt="Digital Marketing Campaign Epsilon" class="w-full h-48 object-cover">
+                        <img src="https://placehold.co/600x400/F0F4C3/FBC02D?text=Digital+Campaign+Epsilon"
+                            alt="Digital Marketing Campaign Epsilon" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-2">Social Media Strategy (Epsilon)</h3>
-                            <p class="text-gray-600">Developing and implementing a comprehensive social media marketing plan.</p>
+                            <p class="text-gray-600">Developing and implementing a comprehensive social media marketing
+                                plan.</p>
                             <a href="#" class="text-blue-600 hover:underline mt-4 inline-block">View Details</a>
                         </div>
                     </div>
                     <div class="bg-white rounded-xl shadow-md overflow-hidden w-full">
-                        <img src="https://placehold.co/600x400/FFEBEE/D32F2F?text=Video+Production+Zeta" alt="Video Production Zeta" class="w-full h-48 object-cover">
+                        <img src="https://placehold.co/600x400/FFEBEE/D32F2F?text=Video+Production+Zeta"
+                            alt="Video Production Zeta" class="w-full h-48 object-cover">
                         <div class="p-6">
                             <h3 class="text-xl font-semibold text-gray-800 mb-2">Animated Explainer Video (Zeta)</h3>
-                            <p class="text-gray-600">Creating a concise and engaging animated video to explain complex services.</p>
+                            <p class="text-gray-600">Creating a concise and engaging animated video to explain complex
+                                services.</p>
                             <a href="#" class="text-blue-600 hover:underline mt-4 inline-block">Watch Video</a>
                         </div>
                     </div>
                 </div>
             </div>
-            <button id="togglePortfolio" class="mt-12 bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-blue-700 transition transform hover:scale-105">
+            <button id="togglePortfolio"
+                class="mt-12 bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-blue-700 transition transform hover:scale-105">
                 View All Projects
             </button>
         </div>
@@ -337,74 +489,67 @@
     <section id="videos" class="scroll-snap-item py-20 bg-white rounded-lg shadow-lg m-4">
         <div class="container mx-auto px-8 text-center">
             <h2 class="text-4xl font-bold text-gray-800 mb-12">Featured Videos</h2>
-            <p class="text-lg text-gray-600 mb-8">Check out some of our recent video projects and client testimonials.</p>
+            <p class="text-lg text-gray-600 mb-8">Check out some of our recent video projects and client testimonials.
+            </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> <!-- Reduced gap to gap-6 -->
                 <!-- Initially visible Videos -->
                 <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden p-4 w-full">
                     <div class="video-container">
-                        <iframe
-                            src="https://youtu.be/TqGUE-i8I3w?si=A8DmCMqLNMCTC1wV"
-                            title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                        ></iframe>
+                        <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/TqGUE-i8I3w?si=h5sXms_8Br5axhWL"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Promotional Video Example</h3>
                     <p class="text-gray-600">A dynamic promotional video showcasing a product launch.</p>
                 </div>
                 <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden p-4 w-full">
                     <div class="video-container">
-                        <iframe
-                            src="https://youtu.be/yDKYr8hqLek?si=M1IckLr-82frvOVb"
-                            title="YouTube video player"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen
-                        ></iframe>
+                        <iframe width="560" height="315"
+                            src="https://www.youtube.com/embed/yDKYr8hqLek?si=v5OF-EX4v4vTpow-"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Client Testimonial</h3>
                     <p class="text-gray-600">Hear what our satisfied clients have to say about working with us.</p>
                 </div>
 
                 <!-- Hidden Videos -->
-                <div id="more-video-items" class="grid grid-cols-1 md:grid-cols-2 gap-6 hidden col-span-full"> <!-- Reduced gap to gap-6 -->
+                <div id="more-video-items" class="grid grid-cols-1 md:grid-cols-2 gap-6 hidden col-span-full">
+                    <!-- Reduced gap to gap-6 -->
                     <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden p-4 w-full">
                         <div class="video-container">
-                            <iframe
-                                src="https://www.youtube.com/embed/tgbNymZ7vqY"
-                                title="YouTube video player"
+                            <iframe src="https://www.youtube.com/embed/tgbNymZ7vqY" title="YouTube video player"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen
-                            ></iframe>
+                                allowfullscreen></iframe>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Explainer Video</h3>
                         <p class="text-gray-600">A short, engaging video explaining a complex service or product.</p>
                     </div>
                     <div class="bg-gray-50 rounded-xl shadow-md overflow-hidden p-4 w-full">
                         <div class="video-container">
-                            <iframe
-                                src="https://www.youtube.com/embed/2g811Eo7K8U"
-                                title="YouTube video player"
+                            <iframe src="https://www.youtube.com/embed/2g811Eo7K8U" title="YouTube video player"
                                 frameborder="0"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowfullscreen
-                            ></iframe>
+                                allowfullscreen></iframe>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-800 mt-4 mb-2">Event Highlights</h3>
                         <p class="text-gray-600">Capturing the best moments from a recent industry event.</p>
                     </div>
                 </div>
             </div>
-            <button id="toggleVideos" class="mt-12 bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-blue-700 transition transform hover:scale-105">
+            <button id="toggleVideos"
+                class="mt-12 bg-blue-600 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-blue-700 transition transform hover:scale-105">
                 View All Videos
             </button>
         </div>
     </section>
 
     <!-- Main Course Container -->
-   <div class="container mx-auto mt-8 p-4 md:p-8">
+    <div class="container mx-auto mt-8 p-4 md:p-8">
         <!-- Hero Section -->
         <div class="bg-white rounded-xl shadow-lg p-6 md:p-12 mb-8">
             <div class="flex flex-col md:flex-row items-start md:items-center justify-between">
@@ -413,28 +558,38 @@
                     <p class="mt-2 text-lg text-gray-600">Master the foundational concepts of user-centered design.</p>
                 </div>
                 <div class="mt-6 md:mt-0">
-                    <button id="enroll-button" class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-xl hover:bg-red-700 transition transform hover:scale-105">
+                    <button id="enroll-button"
+                        class="bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-semibold shadow-xl hover:bg-red-700 transition transform hover:scale-105">
                         Enroll
                     </button>
                 </div>
             </div>
             <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6 text-gray-600">
                 <div class="flex items-center space-x-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4a1 1 0 00-1.414-1.414L11 10.586V7z" clip-rule="evenodd" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-500" viewBox="0 0 20 20"
+                        fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v3.586L7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4a1 1 0 00-1.414-1.414L11 10.586V7z"
+                            clip-rule="evenodd" />
                     </svg>
                     <span>Beginner-friendly</span>
                 </div>
                 <div class="flex items-center space-x-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-500" viewBox="0 0 20 20"
+                        fill="currentColor">
                         <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                        <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                        <path fill-rule="evenodd"
+                            d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                            clip-rule="evenodd" />
                     </svg>
                     <span>6-week course</span>
                 </div>
                 <div class="flex items-center space-x-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 10.586V6z" clip-rule="evenodd" />
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" viewBox="0 0 20 20"
+                        fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 10.586V6z"
+                            clip-rule="evenodd" />
                     </svg>
                     <span>~20 hours of content</span>
                 </div>
@@ -477,8 +632,10 @@
                         <div class="p-4 bg-gray-50 rounded-lg shadow">
                             <div class="module-header" data-target="module-1-details">
                                 <h3 class="font-bold text-lg text-gray-800">Module 1: Introduction to UI/UX</h3>
-                                <svg class="module-arrow h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                <svg class="module-arrow h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
                                 </svg>
                             </div>
                             <div id="module-1-details" class="module-content">
@@ -486,19 +643,30 @@
                                     <li class="p-2 border-b border-gray-200">
                                         <div class="lesson-header" data-target="lesson-1-1">
                                             <h4 class="font-medium text-gray-800">Lesson 1.1: What is UI/UX?</h4>
-                                            <svg class="lesson-arrow h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                            <svg class="lesson-arrow h-5 w-5 text-gray-500"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 5l7 7-7 7" />
                                             </svg>
                                         </div>
                                         <div id="lesson-1-1" class="lesson-content mt-2">
                                             <div class="space-y-4">
                                                 <h5 class="font-semibold text-gray-700">Video Lesson:</h5>
                                                 <div class="video-container">
-                                                    <iframe src="https://www.youtube.com/embed/S2C_P6z9x3I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    <iframe src="https://www.youtube.com/embed/S2C_P6z9x3I"
+                                                        title="YouTube video player" frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowfullscreen></iframe>
                                                 </div>
-                                                <a href="https://www.w3.org/WAI/fundamentals/accessibility-principles/" target="_blank" class="text-blue-600 hover:underline flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 12h8V7.414L10.586 5H6v11zM11 6a1 1 0 10-2 0v2H8a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V6z" clip-rule="evenodd" />
+                                                <a href="https://www.w3.org/WAI/fundamentals/accessibility-principles/"
+                                                    target="_blank"
+                                                    class="text-blue-600 hover:underline flex items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1"
+                                                        viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd"
+                                                            d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 12h8V7.414L10.586 5H6v11zM11 6a1 1 0 10-2 0v2H8a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V6z"
+                                                            clip-rule="evenodd" />
                                                     </svg>
                                                     Download PDF: UI/UX Basics
                                                 </a>
@@ -508,19 +676,30 @@
                                     <li class="p-2 border-b border-gray-200">
                                         <div class="lesson-header" data-target="lesson-1-2">
                                             <h4 class="font-medium text-gray-800">Lesson 1.2: Design Principles</h4>
-                                            <svg class="lesson-arrow h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                            <svg class="lesson-arrow h-5 w-5 text-gray-500"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 5l7 7-7 7" />
                                             </svg>
                                         </div>
                                         <div id="lesson-1-2" class="lesson-content mt-2">
                                             <div class="space-y-4">
                                                 <h5 class="font-semibold text-gray-700">Video Lesson:</h5>
                                                 <div class="video-container">
-                                                    <iframe src="https://www.youtube.com/embed/S2C_P6z9x3I" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    <iframe src="https://www.youtube.com/embed/S2C_P6z9x3I"
+                                                        title="YouTube video player" frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowfullscreen></iframe>
                                                 </div>
-                                                <a href="https://www.w3.org/WAI/fundamentals/accessibility-principles/" target="_blank" class="text-blue-600 hover:underline flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 12h8V7.414L10.586 5H6v11zM11 6a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 10.586V6z" clip-rule="evenodd" />
+                                                <a href="https://www.w3.org/WAI/fundamentals/accessibility-principles/"
+                                                    target="_blank"
+                                                    class="text-blue-600 hover:underline flex items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1"
+                                                        viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd"
+                                                            d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 12h8V7.414L10.586 5H6v11zM11 6a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 10.586V6z"
+                                                            clip-rule="evenodd" />
                                                     </svg>
                                                     Download PDF: Key Design Principles
                                                 </a>
@@ -534,28 +713,42 @@
                         <div class="p-4 bg-gray-50 rounded-lg shadow">
                             <div class="module-header" data-target="module-2-details">
                                 <h3 class="font-bold text-lg text-gray-800">Module 2: User Research and Analysis</h3>
-                                <svg class="module-arrow h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                <svg class="module-arrow h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
                                 </svg>
                             </div>
                             <div id="module-2-details" class="module-content">
                                 <ul class="list-none space-y-2 text-gray-600 mt-4">
                                     <li class="p-2 border-b border-gray-200">
                                         <div class="lesson-header" data-target="lesson-2-1">
-                                            <h4 class="font-medium text-gray-800">Lesson 2.1: Conducting User Research</h4>
-                                            <svg class="lesson-arrow h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                            <h4 class="font-medium text-gray-800">Lesson 2.1: Conducting User Research
+                                            </h4>
+                                            <svg class="lesson-arrow h-5 w-5 text-gray-500"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 5l7 7-7 7" />
                                             </svg>
                                         </div>
                                         <div id="lesson-2-1" class="lesson-content mt-2">
                                             <div class="space-y-4">
                                                 <h5 class="font-semibold text-gray-700">Video Lesson:</h5>
                                                 <div class="video-container">
-                                                    <iframe src="https://www.youtube.com/embed/M23v8i8-oE0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    <iframe src="https://www.youtube.com/embed/M23v8i8-oE0"
+                                                        title="YouTube video player" frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowfullscreen></iframe>
                                                 </div>
-                                                <a href="https://www.w3.org/WAI/fundamentals/accessibility-principles/" target="_blank" class="text-blue-600 hover:underline flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 12h8V7.414L10.586 5H6v11zM11 6a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 10.586V6z" clip-rule="evenodd" />
+                                                <a href="https://www.w3.org/WAI/fundamentals/accessibility-principles/"
+                                                    target="_blank"
+                                                    class="text-blue-600 hover:underline flex items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1"
+                                                        viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd"
+                                                            d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 12h8V7.414L10.586 5H6v11zM11 6a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 10.586V6z"
+                                                            clip-rule="evenodd" />
                                                     </svg>
                                                     Download PDF: User Research Methods
                                                 </a>
@@ -565,19 +758,30 @@
                                     <li class="p-2 border-b border-gray-200">
                                         <div class="lesson-header" data-target="lesson-2-2">
                                             <h4 class="font-medium text-gray-800">Lesson 2.2: User Personas</h4>
-                                            <svg class="lesson-arrow h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                            <svg class="lesson-arrow h-5 w-5 text-gray-500"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 5l7 7-7 7" />
                                             </svg>
                                         </div>
                                         <div id="lesson-2-2" class="lesson-content mt-2">
                                             <div class="space-y-4">
                                                 <h5 class="font-semibold text-gray-700">Video Lesson:</h5>
                                                 <div class="video-container">
-                                                    <iframe src="https://www.youtube.com/embed/M23v8i8-oE0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    <iframe src="https://www.youtube.com/embed/M23v8i8-oE0"
+                                                        title="YouTube video player" frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowfullscreen></iframe>
                                                 </div>
-                                                <a href="https://www.w3.org/WAI/fundamentals/accessibility-principles/" target="_blank" class="text-blue-600 hover:underline flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 12h8V7.414L10.586 5H6v11zM11 6a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 10.586V6z" clip-rule="evenodd" />
+                                                <a href="https://www.w3.org/WAI/fundamentals/accessibility-principles/"
+                                                    target="_blank"
+                                                    class="text-blue-600 hover:underline flex items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1"
+                                                        viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd"
+                                                            d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 12h8V7.414L10.586 5H6v11zM11 6a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 10.586V6z"
+                                                            clip-rule="evenodd" />
                                                     </svg>
                                                     Download PDF: User Personas Guide
                                                 </a>
@@ -591,8 +795,10 @@
                         <div class="p-4 bg-gray-50 rounded-lg shadow">
                             <div class="module-header" data-target="module-3-details">
                                 <h3 class="font-bold text-lg text-gray-800">Module 3: Prototyping and Wireframing</h3>
-                                <svg class="module-arrow h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                <svg class="module-arrow h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 5l7 7-7 7" />
                                 </svg>
                             </div>
                             <div id="module-3-details" class="module-content">
@@ -600,19 +806,30 @@
                                     <li class="p-2 border-b border-gray-200">
                                         <div class="lesson-header" data-target="lesson-3-1">
                                             <h4 class="font-medium text-gray-800">Lesson 3.1: Intro to Figma</h4>
-                                            <svg class="lesson-arrow h-5 w-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                            <svg class="lesson-arrow h-5 w-5 text-gray-500"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M9 5l7 7-7 7" />
                                             </svg>
                                         </div>
                                         <div id="lesson-3-1" class="lesson-content mt-2">
                                             <div class="space-y-4">
                                                 <h5 class="font-semibold text-gray-700">Video Lesson:</h5>
                                                 <div class="video-container">
-                                                    <iframe src="https://www.youtube.com/embed/d2-28iV4a9o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                    <iframe src="https://www.youtube.com/embed/d2-28iV4a9o"
+                                                        title="YouTube video player" frameborder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowfullscreen></iframe>
                                                 </div>
-                                                <a href="https://www.w3.org/WAI/fundamentals/accessibility-principles/" target="_blank" class="text-blue-600 hover:underline flex items-center">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
-                                                        <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 12h8V7.414L10.586 5H6v11zM11 6a1 1 0 10-2 0v2H8a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V6z" clip-rule="evenodd" />
+                                                <a href="https://www.w3.org/WAI/fundamentals/accessibility-principles/"
+                                                    target="_blank"
+                                                    class="text-blue-600 hover:underline flex items-center">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1"
+                                                        viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fill-rule="evenodd"
+                                                            d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 12h8V7.414L10.586 5H6v11zM11 6a1 1 0 10-2 0v2H8a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V6z"
+                                                            clip-rule="evenodd" />
                                                     </svg>
                                                     Download PDF: Figma for Beginners
                                                 </a>
@@ -629,7 +846,8 @@
                 <div id="section-staff" class="course-section">
                     <h2 class="text-3xl font-bold text-gray-800 mb-4">Course Staff</h2>
                     <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg shadow">
-                        <img class="h-16 w-16 rounded-full object-cover" src="https://placehold.co/100x100" alt="Instructor Profile">
+                        <img class="h-16 w-16 rounded-full object-cover" src="https://placehold.co/100x100"
+                            alt="Instructor Profile">
                         <div>
                             <h4 class="font-bold text-lg text-gray-800">Jane Doe</h4>
                             <p class="text-gray-600">Lead UI/UX Designer at Creative Solutions Agency</p>
@@ -701,24 +919,24 @@
                     }
                 });
             });
-            
+
             // Handle expandable lessons
             const lessonHeaders = document.querySelectorAll('.lesson-header');
             lessonHeaders.forEach(header => {
                 header.addEventListener('click', () => {
                     const content = header.nextElementSibling;
                     const arrow = header.querySelector('.lesson-arrow');
-                    
+
                     if (content.classList.contains('expanded')) {
                         content.classList.remove('expanded');
                         arrow.classList.remove('rotate');
                     } else {
-                         // Close other expanded lessons within the same module
-                         const expandedLessons = header.closest('.module-content').querySelectorAll('.lesson-content.expanded');
-                         expandedLessons.forEach(item => item.classList.remove('expanded'));
-                         const rotatedArrows = header.closest('.module-content').querySelectorAll('.lesson-arrow.rotate');
-                         rotatedArrows.forEach(item => item.classList.remove('rotate'));
-                         
+                        // Close other expanded lessons within the same module
+                        const expandedLessons = header.closest('.module-content').querySelectorAll('.lesson-content.expanded');
+                        expandedLessons.forEach(item => item.classList.remove('expanded'));
+                        const rotatedArrows = header.closest('.module-content').querySelectorAll('.lesson-arrow.rotate');
+                        rotatedArrows.forEach(item => item.classList.remove('rotate'));
+
                         content.classList.add('expanded');
                         arrow.classList.add('rotate');
                     }
@@ -735,8 +953,10 @@
         <div class="container mx-auto px-8 text-center max-w-3xl">
             <h2 class="text-4xl font-bold text-gray-800 mb-8">About Our Agency</h2>
             <p class="text-lg text-gray-600 leading-relaxed mb-6">
-                We are a passionate team of creative professionals dedicated to delivering outstanding digital solutions.
-                With years of experience in UI/UX design, strategic digital marketing, and high-quality video production,
+                We are a passionate team of creative professionals dedicated to delivering outstanding digital
+                solutions.
+                With years of experience in UI/UX design, strategic digital marketing, and high-quality video
+                production,
                 we partner with businesses to achieve their online goals and create lasting impressions.
             </p>
             <p class="text-lg text-gray-600 leading-relaxed">
@@ -753,19 +973,22 @@
             <p class="text-lg text-gray-300 mb-8">Ready to start your next project? Send us your email!</p>
             <form class="space-y-6">
                 <div>
-                    <input type="email" placeholder="Your Email" class="w-full p-4 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring-blue-500 focus:border-blue-500 transition" required>
+                    <input type="email" placeholder="Your Email"
+                        class="w-full p-4 border border-gray-600 bg-gray-700 text-white rounded-lg focus:ring-blue-500 focus:border-blue-500 transition"
+                        required>
                 </div>
-                <button type="submit" class="bg-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-green-700 transition transform hover:scale-105">
+                <button type="submit"
+                    class="bg-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:bg-green-700 transition transform hover:scale-105">
                     Send Email
                 </button>
             </form>
         </div>
-        <div id="whatsappButton" class="fixed bottom-20 right-10 bg-white rounded-full animate-bounce transition translate-x-2 "><button
-            type="button" class="flex justify-center items-center"><svg stroke="currentColor" fill="currentColor"
-                stroke-width="0" viewBox="0 0 24 24" class="text-green-500  text-5xl lg:text-7xl " height="1em"
-                width="1em" xmlns="http://www.w3.org/2000/svg">
-                <path
-                    d="M12.001 2C17.5238 2 22.001 6.47715 22.001 
+        <div id="whatsappButton"
+            class="fixed bottom-20 right-10 bg-white rounded-full animate-bounce transition translate-x-2 "><button
+                type="button" class="flex justify-center items-center"><svg stroke="currentColor" fill="currentColor"
+                    stroke-width="0" viewBox="0 0 24 24" class="text-green-500  text-5xl lg:text-7xl " height="1em"
+                    width="1em" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12.001 2C17.5238 2 22.001 6.47715 22.001 
                     12C22.001 17.5228 17.5238 22 12.001 22C10.1671 22 8.44851 21.5064 6.97086 20.6447L2.00516 
                     22L3.35712 17.0315C2.49494 15.5536 2.00098 13.8345 2.00098 12C2.00098 6.47715 6.47813 2 12.001 2ZM8.59339
                      7.30019L8.39232 7.30833C8.26293 7.31742 8.13607 7.34902 8.02057 7.40811C7.93392 7.45244 7.85348 7.51651 
@@ -785,46 +1008,50 @@
                               9.64818 8.24536 9.34986 7.56894C9.29098
                             7.43545 9.11585 7.33846 8.95659 7.32007C8.90265 7.31384 8.84875 7.30758 8.79459 7.30402C8.66053
                              7.29748 8.5262 7.29892 8.39232 7.30833L8.59339 7.30019Z">
-                </path>
-            </svg></button></div>
+                    </path>
+                </svg></button></div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const whatsappButton = document.getElementById('whatsappButton');
+
+                if (whatsappButton) {
+                    whatsappButton.addEventListener('click', function () {
+                        const phoneNumber = '8667089505'; // <-- Update your number here
+                        const whatsappLink = `https://wa.me/${phoneNumber}`;
+
+                        window.open(whatsappLink, '_blank');
+                    });
+                }
+            });
+
+
+        </script>
+        <div id="emailButton"
+            class="fixed bottom-32 right-10 bg-white rounded-full animate-bounce transition translate-x-2 cursor-pointer">
+            <button type="button" class="flex justify-center items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="text-red-500 text-5xl lg:text-7xl"
+                    viewBox="0 0 24 24" width="1em" height="1em">
+                    <path
+                        d="M20 4H4C2.89 4 2.01 4.9 2.01 6L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                </svg>
+            </button>
             <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const whatsappButton = document.getElementById('whatsappButton');
+                document.getElementById('emailButton').addEventListener('click', function () {
+                    const email = 'vixlery@gmail.com';
+                    const subject = 'Inquiry from Website';
+                    const body = 'Hello, I would like to know more about your services.';
 
-    if (whatsappButton) {
-        whatsappButton.addEventListener('click', function() {
-            const phoneNumber = '8667089505'; // <-- Update your number here
-            const whatsappLink = `https://wa.me/${phoneNumber}`;
+                    const gmailLink = `https://mail.google.com/mail/?view=cm&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-            window.open(whatsappLink, '_blank');
-        });
-    }
-});
-
-
-</script>
-<div id="emailButton" class="fixed bottom-32 right-10 bg-white rounded-full animate-bounce transition translate-x-2 cursor-pointer">
-    <button type="button" class="flex justify-center items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="text-red-500 text-5xl lg:text-7xl" viewBox="0 0 24 24" width="1em" height="1em">
-            <path d="M20 4H4C2.89 4 2.01 4.9 2.01 6L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-        </svg>
-    </button>
-    <script>
-        document.getElementById('emailButton').addEventListener('click', function() {
-    const email = 'vixlery@gmail.com';
-    const subject = 'Inquiry from Website';
-    const body = 'Hello, I would like to know more about your services.';
-
-    const gmailLink = `https://mail.google.com/mail/?view=cm&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    window.open(gmailLink, '_blank');
-});
-    </script>
-</div>
+                    window.open(gmailLink, '_blank');
+                });
+            </script>
+        </div>
 
     </section>
 
-    <section id="news-ticker" class="py-4 py-4 bg-gradient-to-r from-gray-900 to-gray-700 text-white shadow-lg news-ticker-fixed">
+    <section id="news-ticker"
+        class="py-4 py-4 bg-gradient-to-r from-gray-900 to-gray-700 text-white shadow-lg news-ticker-fixed">
         <div class="container mx-auto px-4 relative h-8 flex items-center">
             <span class="font-bold mr-4 flex-shrink-0"></span>
             <div class="marquee-track absolute left-0 top-0 h-full flex items-center">
@@ -848,7 +1075,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <!-- Footer Section (Dark Theme) -->
     <footer class="bg-gray-900 text-gray-300 p-8 text-center rounded-t-lg mt-4">
         <div class="container mx-auto">
-            <p>&copy;  All rights reserved.</p>
+            <p>&copy; All rights reserved.</p>
             <div class="flex justify-center space-x-6 mt-4">
                 <a href="#" class="text-gray-400 hover:text-white transition">Privacy Policy</a>
                 <a href="#" class="text-gray-400 hover:text-white transition">Terms of Service</a>
@@ -871,7 +1098,7 @@ document.addEventListener('DOMContentLoaded', function() {
             // இந்த வரி, மொபைல் மெனுவில் உள்ள 'X' பட்டனைக் கிளிக் செய்யும்போது,
             // கிளிக் நிகழ்வு அதன் கீழ் உள்ள மற்ற உறுப்புகளுக்குப் பரவாமல் தடுக்கிறது.
             // இதனால் மெனு சரியாக மூடும், வேறு பக்கத்திற்குச் செல்லாது.
-            event.stopPropagation(); 
+            event.stopPropagation();
             mobileMenu.classList.add('hidden');
         });
 
@@ -912,4 +1139,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     </script>
 </body>
+
 </html>
